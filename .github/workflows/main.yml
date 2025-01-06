@@ -38,7 +38,7 @@ jobs:
         run: |
           echo "Deploying to environment: ${{ github.event.inputs.environment }}"
           echo "Deploying from directory: ${{ github.event.inputs.local_directory }}"
-          echo "Target S3 bucket: ${{ github.event.inputs.dispatch-s3 }}"
+          echo "Target S3 bucket: ${{ github.event.inputs.s3_bucket }}"
           
           # Sync the files to the specified S3 bucket
-          aws s3 sync ./${{ github.event.inputs.local_directory }} s3://${{ github.event.inputs.dispatch-s3 }}/
+          aws s3 sync ./${{ github.event.inputs.local_directory }} s3://${{ github.event.inputs.s3_bucket }}
