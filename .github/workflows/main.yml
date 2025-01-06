@@ -17,7 +17,7 @@ on:
       s3_bucket:
         description: 'S3 Bucket name where files will be deployed'
         required: true
-        default: 'dispatch-s3'  # Default bucket name "dispatch-s3"
+        default: 'dispatch-s3-bucket'  # Default bucket name "dispatch-s3"
 
 jobs:
   deploy:
