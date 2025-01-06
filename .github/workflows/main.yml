@@ -7,17 +7,11 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Choose the environment to deploy to (e.g., staging, production)'
         required: true
-        default: 'staging'
       local_directory:
-        description: 'Directory to deploy from (e.g., build/ or dist/)'
-        required: true
-        default: 'build'
+        required: false
       s3_bucket:
-        description: 'S3 Bucket name where files will be deployed'
         required: true
-        default: 'dispatch-s3-bucket'  # Default bucket name "dispatch-s3"
 
 jobs:
   deploy:
@@ -38,7 +32,7 @@ jobs:
         run: |
           echo "Deploying to environment: ${{ github.event.inputs.environment }}"
           echo "Deploying from directory: ${{ github.event.inputs.local_directory }}"
-          echo "Target S3 bucket: ${{ github.event.inputs.s3_bucket }}"
+          echo "Target S3 bucket: ${{ github.event.inputs.dispatch-s3-bucket }}"
           
           # Sync the files to the specified S3 bucket
-          aws s3 sync ./${{ github.event.inputs.local_directory }} s3://${{ github.event.inputs.s3_bucket }}
+          aws s3 sync ./${{ github.event.inputs.local_directory }} s3://${{ github.event.inputs.dispatch-s3-bucket }}
